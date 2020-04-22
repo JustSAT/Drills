@@ -1,6 +1,16 @@
 <html>
     <style>
-    div {
+        h3 {
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            margin-top: 12pt;
+        }
+        .content {
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            margin-top: 2pt;
+        }
+    .link {
         /* height: 200px; */
         /* width: 400px; */
         background: #1f1f1f;
@@ -37,8 +47,31 @@
     }
     </style>
 <body>
-    <div>
+    <h3>Last update info:</h3>
+    <div class="content">Author:</div>
+    <div id="name" class="content"></div>
+    <div class="content">Date:</div>
+    <div id="date" class="content"></div>
+    <div class="content">Message:</div>
+    <div id="message" class="content"></div>
+    <div class="link">
         <h1><a href="itms-services://?action=download-manifest&url=https://github.com/JustSAT/Drills/raw/master/manifest.plist">Install Drills</a></h1>
     </div>
+    <script>
+        'use strict';
+        
+        (async () => {
+        let url = 'https://api.github.com/repos/justsat/drills/commits?page=1&per_page=1';
+        let response = await fetch(url);
+        
+        let commits = await response.json();
+        let name = commits[0].commit.committer.name;
+        let date = new Date(Date.parse(commits[0].commit.committer.date));
+        let message = commits[0].commit.message
+        document.getElementById("name").innerHTML = name; 
+        document.getElementById("date").innerHTML = date.toLocaleString(); 
+        document.getElementById("message").innerHTML = message; 
+        })()
+        </script>
 </body>
 </html>
