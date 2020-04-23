@@ -1,44 +1,143 @@
 <html>
+    <head>
+
+    <title>Drills Development Distribution</title>
     <style>
-    div {
-        /* height: 200px; */
-        /* width: 400px; */
-        background: #1f1f1f;
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        padding: 0 30px;
-        border-radius: 20pt;
-    }
-    a {
-        font-size: 50pt;
-    }
-    /* unvisited link */
-    a:link {
-    color:#ffd25c;
-    }
+        /* unvisited link */
+        a:link {
+            color:#ffd25c;
+        }
 
-    /* visited link */
-    a:visited {
-    color:#ffd25c;
-    }
+        /* visited link */
+        a:visited {
+            color:#ffd25c;
+        }
 
-    /* mouse over link */
-    a:hover {
-    color:#ffd25c;
-    }
+        /* mouse over link */
+        a:hover {
+            color:#ffd25c;
+        }
 
-    /* selected link */
-    a:active {
-    color:#ffd25c;
-    }
+        /* selected link */
+        a:active {
+            color:#ffd25c;
+        }
+        
+        h3 {
+            font-family: Helvetica, sans-serif;
+            font-size: 10%;
+            text-align: center;
+            margin-top: 4pt;
+            margin-bottom: 4pt;
+        }
+        .content {
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            margin-top: 2pt;
+            font-size: 1.4rem;
+        }
+
+        .subcontent {
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            font-weight: lighter;
+            margin-top: 2pt;
+            font-size: 1.2rem;
+        }
+        .link {
+            /* height: 200px; */
+            /* width: 400px; */
+            background: #1f1f1f;
+            margin-top: 16pt;
+            position: absolute;
+            /* top: 50%; */
+            left: 50%;
+            -ms-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+        #image {
+            width: 200px;
+            height: 200px;
+            margin-top: 14pt;
+            background-image: url('https://github.com/JustSAT/Drills/raw/master/big.png');
+            background-size: contain;
+            margin-left: 50%;
+            -ms-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+            border-radius: 20%;
+        }
+        
+        a {
+            font-size: 300%;
+            text-decoration: none;
+            font-family: Helvetica, sans-serif;
+        }
     </style>
+    </head>
 <body>
-    <div>
-        <h1><a href="itms-services://?action=download-manifest&url=https://github.com/JustSAT/Drills/raw/master/manifest.plist">Install Drills</a></h1>
+    <div id="image">
+        <!-- <img src="https://github.com/JustSAT/Drills/raw/master/big.png" alt="Drills"> -->
     </div>
+    <div class="content">Version:</div>
+    <div id="version" class="content subcontent"></div>
+    <hr>
+    <div class="content">Author:</div>
+    <div id="name" class="content subcontent"></div>
+    <hr>
+    <div class="content">Upload Date:</div>
+    <div id="date" class="content subcontent"></div>
+    <hr>
+    <div class="content">Commit message:</div>
+    <div id="message" class="content subcontent"></div>
+    <div class="link">
+        <a href="itms-services://?action=download-manifest&url=https://github.com/JustSAT/Drills/raw/master/manifest.plist">Install</a>
+    </div>
+    <script>
+        'use strict';
+        function requestCommitInformation() {
+            (async () => {
+                var url = 'https://api.github.com/repos/justsat/drills/commits?path=Drills.ipa';
+                var response = await fetch(url);
+                
+                let commits = await response.json();
+                let name = commits[0].commit.committer.name;
+                let date = new Date(Date.parse(commits[0].commit.committer.date));
+                let message = commits[0].commit.message
+                document.getElementById("name").innerHTML = name; 
+                document.getElementById("date").innerHTML = date.toLocaleString(); 
+                document.getElementById("message").innerHTML = message; 
+            })()
+        }
+
+        function requestBuildInformation() {
+            (async () => {
+                console.log("1");
+                let url = 'https://raw.githubusercontent.com/JustSAT/Drills/master/manifest.plist';
+                let response = await fetch(url);
+                let resultText = await response.text();
+
+                let parser = new DOMParser();
+                var xmlDoc = parser.parseFromString(resultText, "application/xml");
+                xmlDoc = xmlDoc.getElementsByTagName("plist")[0].childNodes[1].childNodes[3].childNodes[1].childNodes[7];
+                let keys = xmlDoc.getElementsByTagName('key');
+                let strings = xmlDoc.getElementsByTagName('string');
+                for (var i = 0; i < keys.length; i++) {
+                    if (keys[i].childNodes[0].nodeValue === "bundle-version") {
+                        document.getElementById("version").innerHTML = strings[i].childNodes[0].nodeValue;
+                        break;   
+                    }
+                }
+            })()
+        }
+        
+        requestCommitInformation();
+        requestBuildInformation();
+
+        document.getElementById("image").style.width = (window.screen.width * 0.1).toString();
+        document.getElementById("image").style.height = (window.screen.width * 0.1).toString();
+        console.log(document.getElementById("image").style.width);
+        </script>
 </body>
 </html>
