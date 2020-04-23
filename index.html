@@ -22,7 +22,7 @@
         a:active {
             color:#ffd25c;
         }
-        @media only screen and (min-width: 1024px) { 
+        /* @media only screen and (min-width: 1024px) { 
             h3 {
                 font-family: Helvetica, sans-serif;
                 text-align: center;
@@ -44,12 +44,9 @@
                 font-size: 10pt;
             }
             .link {
-                /* height: 200px; */
-                /* width: 400px; */
                 background: #1f1f1f;
                 margin-top: 16pt;
                 position: absolute;
-                /* top: 50%; */
                 left: 50%;
                 -ms-transform: translate(-50%, 0);
                 transform: translate(-50%, 0);
@@ -73,8 +70,8 @@
                 font-family: Helvetica, sans-serif;
             }
             
-        }
-        @media only screen and (max-width: 1024px) {
+        } */
+        /* @media only screen and (max-width: 1024px) { */
         /* For mobile phones: */
             h3 {
                 font-family: Helvetica, sans-serif;
@@ -110,10 +107,10 @@
                 padding: 10px 20px;
                 border-radius: 20px;
             }
-            .image {
+            #image {
+                width: 200px;
+                height: 200px;
                 margin-top: 14pt;
-                width: 30%;
-                padding-top: 30%;
                 background-image: url('https://github.com/JustSAT/Drills/raw/master/big.png');
                 background-size: contain;
                 margin-left: 50%;
@@ -127,11 +124,11 @@
                 text-decoration: none;
                 font-family: Helvetica, sans-serif;
             }
-        }
+        /* } */
     </style>
     </head>
 <body>
-    <div class="image">
+    <div id="image">
         <!-- <img src="https://github.com/JustSAT/Drills/raw/master/big.png" alt="Drills"> -->
     </div>
     <div class="content">Version:</div>
@@ -189,6 +186,9 @@
         requestCommitInformation();
         requestBuildInformation();
 
+        document.getElementById("image").style.width = (window.screen.width * 0.1).toString();
+        document.getElementById("image").style.height = (window.screen.width * 0.1).toString();
+        console.log(document.getElementById("image").style.width);
         </script>
 </body>
 </html>
