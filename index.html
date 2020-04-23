@@ -1,76 +1,135 @@
 <html>
     <style>
-        h3 {
-            font-family: Helvetica, sans-serif;
-            text-align: center;
-            margin-top: 4pt;
-            margin-bottom: 4pt;
-        }
-        .content {
-            font-family: Helvetica, sans-serif;
-            text-align: center;
-            margin-top: 2pt;
-            font-size: 12pt;
+        /* unvisited link */
+        a:link {
+            color:#ffd25c;
         }
 
-        .subcontent {
-            font-family: Helvetica, sans-serif;
-            text-align: center;
-            margin-top: 2pt;
-            font-size: 10pt;
+        /* visited link */
+        a:visited {
+            color:#ffd25c;
         }
-    .link {
-        /* height: 200px; */
-        /* width: 400px; */
-        background: #1f1f1f;
-        margin-top: 16pt;
-        position: absolute;
-        /* top: 50%; */
-        left: 50%;
-        -ms-transform: translate(-50%, 0);
-        transform: translate(-50%, 0);
-        padding: 0px 20px;
-        border-radius: 20pt;
-    }
-    .image {
-        height: 100px;
-        width: 100px;
-        background-image: url('https://github.com/JustSAT/Drills/raw/master/big.png');
-        background-size: contain;
-        margin-left: 50%;
-        -ms-transform: translate(-50%, 0);
-        transform: translate(-50%, 0);
-        border-radius: 20%;
-    }
-    
-    a {
-        font-size: 40pt;
-    }
-    /* unvisited link */
-    a:link {
-    color:#ffd25c;
-    }
 
-    /* visited link */
-    a:visited {
-    color:#ffd25c;
-    }
+        /* mouse over link */
+        a:hover {
+            color:#ffd25c;
+        }
 
-    /* mouse over link */
-    a:hover {
-    color:#ffd25c;
-    }
+        /* selected link */
+        a:active {
+            color:#ffd25c;
+        }
+        @media only screen and (min-width: 1024px) { 
+            h3 {
+                font-family: Helvetica, sans-serif;
+                text-align: center;
+                margin-top: 4pt;
+                margin-bottom: 4pt;
+            }
+            .content {
+                font-family: Helvetica, sans-serif;
+                text-align: center;
+                margin-top: 2pt;
+                font-size: 12pt;
+            }
 
-    /* selected link */
-    a:active {
-    color:#ffd25c;
-    }
+            .subcontent {
+                font-family: Helvetica, sans-serif;
+                font-weight: lighter;
+                text-align: center;
+                margin-top: 2pt;
+                font-size: 10pt;
+            }
+            .link {
+                /* height: 200px; */
+                /* width: 400px; */
+                background: #1f1f1f;
+                margin-top: 16pt;
+                position: absolute;
+                /* top: 50%; */
+                left: 50%;
+                -ms-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+                padding: 10px 20px;
+                border-radius: 20px;
+            }
+            .image {
+                height: 100px;
+                width: 100px;
+                background-image: url('https://github.com/JustSAT/Drills/raw/master/big.png');
+                background-size: contain;
+                margin-left: 50%;
+                -ms-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+                border-radius: 20%;
+            }
+            
+            a {
+                font-size: 40pt;
+                text-decoration: none;
+                font-family: Helvetica, sans-serif;
+            }
+            
+        }
+        @media only screen and (max-width: 1024px) {
+        /* For mobile phones: */
+            h3 {
+                font-family: Helvetica, sans-serif;
+                font-size: 40pt;
+                text-align: center;
+                margin-top: 4pt;
+                margin-bottom: 4pt;
+            }
+            .content {
+                font-family: Helvetica, sans-serif;
+                text-align: center;
+                margin-top: 2pt;
+                font-size: 4em;
+            }
+
+            .subcontent {
+                font-family: Helvetica, sans-serif;
+                text-align: center;
+                font-weight: lighter;
+                margin-top: 2pt;
+                font-size: 3em;
+            }
+            .link {
+                /* height: 200px; */
+                /* width: 400px; */
+                background: #1f1f1f;
+                margin-top: 16pt;
+                position: absolute;
+                /* top: 50%; */
+                left: 50%;
+                -ms-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+                padding: 10px 20px;
+                border-radius: 40px;
+            }
+            .image {
+                margin-top: 14pt;
+                height: 400px;
+                width: 400px;
+                background-image: url('https://github.com/JustSAT/Drills/raw/master/big.png');
+                background-size: contain;
+                margin-left: 50%;
+                -ms-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+                border-radius: 20%;
+            }
+            
+            a {
+                font-size: 150pt;
+                text-decoration: none;
+                font-family: Helvetica, sans-serif;
+            }
+        }
     </style>
 <body>
     <div class="image">
         <!-- <img src="https://github.com/JustSAT/Drills/raw/master/big.png" alt="Drills"> -->
     </div>
-    <h3>Last update info:</h3>
     <div class="content">Version:</div>
     <div id="version" class="content subcontent"></div>
     <hr>
@@ -83,7 +142,7 @@
     <div class="content">Commit message:</div>
     <div id="message" class="content subcontent"></div>
     <div class="link">
-        <h1><a href="itms-services://?action=download-manifest&url=https://github.com/JustSAT/Drills/raw/master/manifest.plist">Install</a></h1>
+        <a href="itms-services://?action=download-manifest&url=https://github.com/JustSAT/Drills/raw/master/manifest.plist">Install</a>
     </div>
     <script>
         'use strict';
