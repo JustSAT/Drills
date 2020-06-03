@@ -33,7 +33,7 @@
 				<key>bundle-version</key>
 				<string>2.2</string>
 				<key>kind</key>
-				<string>software app</string>
+				<string>software</string>
 				<key>platform-identifier</key>
 				<string>com.apple.platform.iphoneos</string>
 				<key>title</key>
